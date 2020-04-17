@@ -9,6 +9,7 @@ import Details from '../Pages/Details/Details';
 import Edit from '../Pages/Edit/Edit';
 
 class App extends Component {
+
   // Renders the entire app on the DOM
   render() {
     return (

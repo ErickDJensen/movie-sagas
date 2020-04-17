@@ -10,10 +10,22 @@ import logger from 'redux-logger';
 // Import saga middleware
 import createSagaMiddleware from 'redux-saga';
 import { HashRouter as Router } from 'react-router-dom';
+import axios from 'axios';
+import { takeEvery, put } from 'redux-saga/effects'
 
 // Create the rootSaga generator function
 function* rootSaga() {
+    yield takeEvery('FETCH_MOVIES', fetchMovieSaga);
+}
 
+function* fetchMovieSaga(action){
+    try{
+        const response = yield axios.get('/api/movie');
+        yield put({type: 'SET_MOVIES', payload: response.data});
+    }
+    catch(error){
+        console.log('Error in fetchMovieSaga', error);
+      }
 }
 
 // Create sagaMiddleware
