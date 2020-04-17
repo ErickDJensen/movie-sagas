@@ -21,10 +21,10 @@ class Home extends Component {
         return (
             <div>
                 <p>Movies here</p>
-                <ul>
+                <div>
                 {this.props.movies.map(movie =>
-                    <li key={movie.id}>{movie.title}</li>)}
-                </ul>
+                    <pre key={movie.id}><img src={movie.poster}/>{movie.title}{movie.description}</pre>)}
+                </div>
             </div>
         )
     }
