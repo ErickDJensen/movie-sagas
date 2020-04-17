@@ -4,15 +4,14 @@ import { withRouter } from 'react-router-dom';
 
 import { connect } from 'react-redux';
 
-
-class Home extends Component {
+class Edit extends Component {
     render() {
         return (
             <div>
-                <p>Movies here</p>
+                <p>Edit here</p>
             </div>
         )
     }
 }
 
-export default withRouter(connect()(Home));
+export default withRouter(connect()(Edit));
