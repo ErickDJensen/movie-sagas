@@ -4,26 +4,32 @@ import { withRouter } from 'react-router-dom';
 
 import { connect } from 'react-redux';
 
+import './Home.css';
+
 
 class Home extends Component {
 
-    componentDidMount(){
+    componentDidMount() {
         this.getMovies();
-      }
-      
-      getMovies(){
-        console.log('In getMovies');
-        this.props.dispatch({type: 'FETCH_MOVIES'})
-      }
+    }
 
-      
+    getMovies() {
+        console.log('In getMovies');
+        this.props.dispatch({ type: 'FETCH_MOVIES' })
+    }
+
+
     render() {
         return (
             <div>
-                <p>Movies here</p>
                 <div>
-                {this.props.movies.map(movie =>
-                    <pre key={movie.id}><img src={movie.poster}/>{movie.title}{movie.description}</pre>)}
+                    {this.props.movies.map(movie =>
+                        <div key={movie.id} className="grid-container">
+                            <div className="item1" id="item1"><img src={movie.poster} alt="movie poster" /></div>
+                            <div className="item2" id="item2">{movie.title}</div>
+                            <div className="item3">{movie.description}</div>
+                        </div>
+                    )}
                 </div>
             </div>
         )

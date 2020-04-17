@@ -1,0 +1,32 @@
+.item1 { grid-area: poster; }
+.item2 { grid-area: title; }
+.item3 { grid-area: description; }
+
+.grid-container {
+  display: grid;
+  grid-template-areas:
+    'poster title title title'
+    'poster description description description'
+    'poster description description description';
+  grid-gap: 0px;
+  background-color: black;
+  padding: 0px;
+}
+
+.grid-container > div {
+  background-color: white;
+  text-align: left;
+  padding: 5px 0;
+  font-size: 20px;
+}
+
+#item2 {
+    font-size: 40px;
+    text-align: left;
+}
+
+#item1 {
+    display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
