@@ -15,7 +15,7 @@ class App extends Component {
     return (
       <div className="App">
         <header>
-        <h1>MOVIES!!</h1>
+        <img id="header_image" src="../images/movies_header.jpg" alt="movie reel"/>
         </header>
         
         <Router>

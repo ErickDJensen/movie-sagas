@@ -4,14 +4,24 @@ import { withRouter } from 'react-router-dom';
 
 import { connect } from 'react-redux';
 
-class Detail_Page extends Component {
+class Details extends Component {
     render() {
         return (
             <div>
-                <p>details here</p>
+                <h1>Details</h1>
+                {this.props.details.map(details =>
+                        <div>
+                    <div>{details.name}</div>
+                    <div>{details.description}</div>
+                </div>
+                )}
             </div>
         )
     }
 }
 
-export default withRouter(connect()(Detail_Page));
+const mapStateToProps = reduxState => ({
+    details: reduxState.details,
+});
+
+export default withRouter(connect(mapStateToProps)(Details));
