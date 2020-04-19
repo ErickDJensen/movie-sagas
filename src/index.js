@@ -17,6 +17,7 @@ import { takeEvery, put } from 'redux-saga/effects'
 function* rootSaga() {
     yield takeEvery('FETCH_MOVIES', fetchMovieSaga);
     yield takeEvery('FETCH_MOVIES_DETAILS', fetchMovieDetailSaga);
+    yield takeEvery('FETCH_GENRES', fetchGenresSaga);
 }
 
 function* fetchMovieSaga(action){
@@ -37,22 +38,21 @@ function* fetchMovieDetailSaga(action){
         console.log('in fetchMovieDetailSaga', response.data);
     }
     catch(error){
-        console.log('Error in fetchMovieSaga', error);
+        console.log('Error in fetchMovieDetailSaga', error);
       }
 }
 
-// const fetchSingleMovie = (state=-1, action) => {
-//     if (action.type === 'FETCH_MOVIES_DETAILS') {
-//         console.log('fetchSingleMovie state', action.payload);
-//         return state + action.payload;
-//     }
-//     if (action.type === 'CLEAR_STATE') {
-//         const updatedState = -1;
-//         return updatedState;
-//     }
-//     return state;
-// };
+function* fetchGenresSaga(action){
+    try{
+        const response = yield axios.get(`/api/genres?q=${action.payload}`);
+        yield put({type: 'SET_GENRES', payload: response.data});
+        console.log('in fetchGenresSaga', response.data);
+    }
+    catch(error){
+        console.log('Error in fetchGenresSaga', error);
+      }
 
+}
 
 
 // Create sagaMiddleware
@@ -69,7 +69,7 @@ const movies = (state = [], action) => {
 }
 
 // Used to store the movie genres
-const genres = (state = [], action) => {
+const genres = (state=[], action) => {
     switch (action.type) {
         case 'SET_GENRES':
             return action.payload;

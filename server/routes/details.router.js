@@ -18,7 +18,6 @@ const router = express.Router();
 //   });
 
   router.get('/', (req, res) => {
-    // returns one movie
     console.log('query is:',req.query);
     let id = req.query.q;
     const queryText = `
