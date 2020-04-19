@@ -3,6 +3,7 @@ const pool = require('../modules/pool');
 
 const router = express.Router();
 
+//getting a single movies details for the detail page from the database
 router.get('/', (req, res) => {
   console.log('query is:', req.query);
   let id = req.query.q;

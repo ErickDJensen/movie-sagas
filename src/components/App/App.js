@@ -16,7 +16,6 @@ class App extends Component {
         <header>
           <img id="header_image" src="../images/movies_header.jpg" alt="movie reel" />
         </header>
-
         <Router>
           <Route exact path='/' component={Home} />
           <Route path='/Details' component={Details} />

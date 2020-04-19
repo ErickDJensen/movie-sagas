@@ -15,25 +15,25 @@ class Edit extends Component {
         title: '',
         description: '',
     }
-
+    //function to cancel an edit
     cancelEdit = () => {
         this.props.history.push('/details');
     }
-
+    //function to get the input text for movie title
     handleInputChange = (event) => {
         console.log('in handleInputChange', event.target.value);
         this.setState({
             title: event.target.value,
         })
     }
-
+    //function to get the input for movie description
     handleTextAreaChange = (event) => {
         console.log('in handleTextAreaChange', event.target.value);
         this.setState({
             description: event.target.value,
         })
     }
-
+    //function to save movie title and description to the database
     SaveInfo = () => {
         console.log('in SaveInfo', this.state);
         axios.put('/api/update', this.state)
@@ -53,7 +53,6 @@ class Edit extends Component {
                 <button onClick={this.cancelEdit}>Cancel</button><button onClick={this.SaveInfo}>Save</button>
                 <input type="text" onChange={this.handleInputChange}></input>
                 <textarea type="text" onChange={this.handleTextAreaChange}></textarea>
-
                 <h1 className="details">{this.props.details.title}</h1>
                 <p className="details">{this.props.details.description}</p>
                 <h3 className="details">Genres</h3>
@@ -63,6 +62,7 @@ class Edit extends Component {
     }
 }
 
+//access to the redux store
 const mapStateToProps = reduxState => ({
     details: reduxState.details,
     genres: reduxState.genres,

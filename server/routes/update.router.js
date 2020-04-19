@@ -3,6 +3,7 @@ const pool = require('../modules/pool');
 
 const router = express.Router();
 
+//updates the title and description of a movie in the database
 router.put('/', (req, res) => {
     let title = req.body.title
     let description = req.body.description

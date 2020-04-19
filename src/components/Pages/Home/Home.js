@@ -12,19 +12,19 @@ class Home extends Component {
     componentDidMount() {
         this.getMovies();
     }
-
+    //function that gets all movies to display on the DOM
     getMovies = () => {
         console.log('In getMovies');
         this.props.dispatch({ type: 'FETCH_MOVIES' })
     }
-
+    //function that gets a single movie's title and description to display on the details page
     showDetails = (event, id) => {
         console.log('in showDetails', id);
         this.props.dispatch({ type: 'FETCH_MOVIES_DETAILS', payload: id });
         this.getGenres(event, id);
         this.props.history.push(`/Details`);
     }
-
+    //function that gets the genres for each corresponding movie to display on the details page
     getGenres = (event, id) => {
         console.log('in getGenres', id);
         this.props.dispatch({ type: 'FETCH_GENRES', payload: id })
@@ -48,6 +48,7 @@ class Home extends Component {
     }
 }
 
+//access to the redux store
 const mapStateToProps = reduxState => ({
     movies: reduxState.movies,
 });
