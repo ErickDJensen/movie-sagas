@@ -20,37 +20,37 @@ function* rootSaga() {
     yield takeEvery('FETCH_GENRES', fetchGenresSaga);
 }
 
-function* fetchMovieSaga(action){
-    try{
+function* fetchMovieSaga(action) {
+    try {
         const response = yield axios.get('/api/movie');
-        yield put({type: 'SET_MOVIES', payload: response.data});
+        yield put({ type: 'SET_MOVIES', payload: response.data });
         console.log('in fetchMovieSaga', response.data)
     }
-    catch(error){
+    catch (error) {
         console.log('Error in fetchMovieSaga', error);
-      }
+    }
 }
 
-function* fetchMovieDetailSaga(action){
-    try{
+function* fetchMovieDetailSaga(action) {
+    try {
         const response = yield axios.get(`/api/details?q=${action.payload}`);
-        yield put({type: 'SET_MOVIE_DETAILS', payload: response.data});
+        yield put({ type: 'SET_MOVIE_DETAILS', payload: response.data });
         console.log('in fetchMovieDetailSaga', response.data);
     }
-    catch(error){
+    catch (error) {
         console.log('Error in fetchMovieDetailSaga', error);
-      }
+    }
 }
 
-function* fetchGenresSaga(action){
-    try{
+function* fetchGenresSaga(action) {
+    try {
         const response = yield axios.get(`/api/genres?q=${action.payload}`);
-        yield put({type: 'SET_GENRES', payload: response.data});
+        yield put({ type: 'SET_GENRES', payload: response.data });
         console.log('in fetchGenresSaga', response.data);
     }
-    catch(error){
+    catch (error) {
         console.log('Error in fetchGenresSaga', error);
-      }
+    }
 
 }
 
@@ -69,7 +69,7 @@ const movies = (state = [], action) => {
 }
 
 // Used to store the movie genres
-const genres = (state=[], action) => {
+const genres = (state = [], action) => {
     switch (action.type) {
         case 'SET_GENRES':
             return action.payload;
@@ -101,6 +101,6 @@ const storeInstance = createStore(
 // Pass rootSaga into our sagaMiddleware
 sagaMiddleware.run(rootSaga);
 
-ReactDOM.render(<Provider store={storeInstance}><Router><App /></Router></Provider>, 
+ReactDOM.render(<Provider store={storeInstance}><Router><App /></Router></Provider>,
     document.getElementById('root'));
 registerServiceWorker();

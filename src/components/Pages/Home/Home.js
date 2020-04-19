@@ -29,7 +29,7 @@ class Home extends Component {
         console.log('in getGenres', id);
         this.props.dispatch({ type: 'FETCH_GENRES', payload: id })
     }
-    
+
 
     render() {
         return (
