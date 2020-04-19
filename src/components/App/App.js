@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
 import { HashRouter as Router, Route } from 'react-router-dom'
-import { withRouter } from 'react-router'
 
 //Import components to put on this page
 import Home from '../Pages/Home/Home';
@@ -29,4 +28,4 @@ class App extends Component {
   }
 }
 
-export default withRouter(App);
+export default (App);

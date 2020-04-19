@@ -9,6 +9,12 @@ import './Home.css';
 
 class Home extends Component {
 
+state = {
+    id: '',
+}
+
+
+
     componentDidMount() {
         this.getMovies();
     }
@@ -18,10 +24,10 @@ class Home extends Component {
         this.props.dispatch({ type: 'FETCH_MOVIES' })
     }
 
-    showDetails = () => {
-        console.log('in showDetails');
-        this.props.dispatch({ type: 'FETCH_MOVIES_DETAILS' });
-        this.props.history.push('/Details');
+    showDetails = (event, id) => {
+        console.log('in showDetails', id);
+        this.props.dispatch({ type: 'FETCH_MOVIES_DETAILS', payload: id });
+        this.props.history.push(`/Details`);
     }
 
 
@@ -30,7 +36,7 @@ class Home extends Component {
             <div>
                 <div>
                     {this.props.movies.map(movie =>
-                        <div key={movie.id} className="grid-container" onClick={this.showDetails}>
+                        <div key={movie.id} id={movie.id} className="grid-container" onClick={(event) => this.showDetails(event, movie.id) }>
                             <div className="item1" id="item1"><img src={movie.poster} alt="movie poster" /></div>
                     <div className="item2" id="item2">{movie.title}</div>
                     <div className="item3">{movie.description}</div>
