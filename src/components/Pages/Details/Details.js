@@ -4,6 +4,8 @@ import { withRouter } from 'react-router-dom';
 
 import { connect } from 'react-redux';
 
+import './Details.css';
+
 class Details extends Component {
 
 goBack = () => {
@@ -17,7 +19,6 @@ goBack = () => {
     render() {
         return (
             <div>
-                <h1>Details</h1>
                 <button onClick={this.goBack}>Go Back</button><button>Edit</button>
                 {/* {this.props.movies.map((details, movie) =>
                         <div key={details.id}>
@@ -25,7 +26,8 @@ goBack = () => {
                     <pre>{JSON.stringify(this.props.movies)}</pre>
                 </div>
                 )} */}
-                <pre>{JSON.stringify(this.props.movies[this.props.movie])}</pre>
+                <h1 className="details">{this.props.details.title}</h1>
+                <p className="details">{this.props.details.description}</p>
             </div>
         )
     }
@@ -33,7 +35,8 @@ goBack = () => {
 
 const mapStateToProps = reduxState => ({
     movies: reduxState.movies,
-    movie: reduxState.fetchSingleMovie
+    movie: reduxState.fetchSingleMovie,
+    details: reduxState.details,
 });
 
 export default withRouter(connect(mapStateToProps)(Details));

@@ -16,40 +16,42 @@ import { takeEvery, put } from 'redux-saga/effects'
 // Create the rootSaga generator function
 function* rootSaga() {
     yield takeEvery('FETCH_MOVIES', fetchMovieSaga);
-    // yield takeEvery('FETCH_MOVIES_DETAILS', fetchMovieDetailSaga);
+    yield takeEvery('FETCH_MOVIES_DETAILS', fetchMovieDetailSaga);
 }
 
 function* fetchMovieSaga(action){
     try{
         const response = yield axios.get('/api/movie');
         yield put({type: 'SET_MOVIES', payload: response.data});
+        console.log('in fetchMovieSaga', response.data)
     }
     catch(error){
         console.log('Error in fetchMovieSaga', error);
       }
 }
 
-// function* fetchMovieDetailSaga(action){
-//     try{
-//         const response = yield axios.get('/api/movie');
-//         yield put({type: 'SET_MOVIE_DETAILS', payload: response.data});
-//     }
-//     catch(error){
-//         console.log('Error in fetchMovieSaga', error);
-//       }
-// }
+function* fetchMovieDetailSaga(action){
+    try{
+        const response = yield axios.get(`/api/details?q=${action.payload}`);
+        yield put({type: 'SET_MOVIE_DETAILS', payload: response.data});
+        console.log('in fetchMovieDetailSaga', response.data);
+    }
+    catch(error){
+        console.log('Error in fetchMovieSaga', error);
+      }
+}
 
-const fetchSingleMovie = (state=-1, action) => {
-    if (action.type === 'FETCH_MOVIES_DETAILS') {
-        console.log('fetchSingleMovie state', action.payload);
-        return state + action.payload;
-    }
-    if (action.type === 'CLEAR_STATE') {
-        const updatedState = -1;
-        return updatedState;
-    }
-    return state;
-};
+// const fetchSingleMovie = (state=-1, action) => {
+//     if (action.type === 'FETCH_MOVIES_DETAILS') {
+//         console.log('fetchSingleMovie state', action.payload);
+//         return state + action.payload;
+//     }
+//     if (action.type === 'CLEAR_STATE') {
+//         const updatedState = -1;
+//         return updatedState;
+//     }
+//     return state;
+// };
 
 
 
@@ -91,7 +93,7 @@ const storeInstance = createStore(
         movies,
         genres,
         details,
-        fetchSingleMovie,
+        // fetchSingleMovie,
     }),
     // Add sagaMiddleware to our store
     applyMiddleware(sagaMiddleware, logger),
