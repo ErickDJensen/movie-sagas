@@ -49,14 +49,17 @@ class Edit extends Component {
 
     render() {
         return (
-            <div className="container">
-                <button onClick={this.cancelEdit}>Cancel</button><button onClick={this.SaveInfo}>Save</button>
-                <input type="text" onChange={this.handleInputChange}></input>
-                <textarea type="text" onChange={this.handleTextAreaChange}></textarea>
-                <h1 className="details">{this.props.details.title}</h1>
-                <p className="details">{this.props.details.description}</p>
-                <h3 className="details">Genres</h3>
-                <ul className="details">{this.props.genres.map((genre, i) => <li key={i}>{genre.name}</li>)}</ul>
+            <div>
+                <button onClick={this.cancelEdit}>Cancel</button>
+                <button onClick={this.SaveInfo}>Save</button>
+                <input className="style" type="text" placeholderonChange={this.handleInputChange}></input>
+                <textarea className="style" type="text" onChange={this.handleTextAreaChange}></textarea>
+                <div className="text">
+                <h1>{this.props.details.title}</h1>
+                <p>{this.props.details.description}</p>
+                <h3>Genres</h3>
+                <ul>{this.props.genres.map((genre, i) => <li key={i}>{genre.name}</li>)}</ul>
+                </div>
             </div>
         )
     }
