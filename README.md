@@ -6,8 +6,8 @@
 This app displays a list of movies. A user can click on a movie to go to a details page that shows the title, description, and genres of that movie. On the details page a user can click an edit button that allows the user to update the title and description of the movie selected. The user can also cancel the edit and click the back buttons to go back to the home screen.
 
 ## Screen Shot
-![](images/movie_homepage.png)
-![](images/movie_detailspage.png)
+![](public/images/movie_homepage.png)
+![](public/images/movie_detailspage.png)
 
 ## Prerequisites
 - React
