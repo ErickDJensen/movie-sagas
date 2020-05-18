@@ -10,7 +10,7 @@ router.put('/', (req, res) => {
     let id = req.body.id
     let sqlText = `UPDATE movies SET title=$1, description=$2 WHERE id=$3`;
     console.log('in router put', req.body.id, req.body.description, req.body.title);
-    pool.query(sqlText[title, description, id])
+    pool.query(sqlText, [title, description, id])
         .then((result) => {
             res.sendStatus(200);
         })
